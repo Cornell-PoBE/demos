@@ -49,8 +49,8 @@ def get_reddit_posts(uri):
   r_json = r.json()
   for i, element in enumerate(r_json['data']['children'][:10]):
     print '{}. {}'.format(i+1, element['data']['title'].encode('utf-8'))
-    # print '- By \'{}\''.format(element['data']['author'].encode('utf-8'))
-    # print '- URL: {}'.format(element['data']['url'].encode('utf-8'))
+    print '- By \'{}\''.format(element['data']['author'].encode('utf-8'))
+    print '- URL: {}'.format(element['data']['url'].encode('utf-8'))
     # TODO - grab more information to display if you want!
   print
 

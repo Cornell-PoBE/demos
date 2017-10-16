@@ -7,6 +7,8 @@ idna==2.6
 itsdangerous==0.24
 Jinja2==2.9.6
 MarkupSafe==1.0
+marshmallow==2.13.6
+marshmallow-sqlalchemy==0.13.1
 requests==2.18.4
 SQLAlchemy==1.1.14
 termcolor==1.1.0

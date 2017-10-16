@@ -2,4 +2,4 @@
 venv
 *.DS_Store
 *.env
-src/migrations
+migrations

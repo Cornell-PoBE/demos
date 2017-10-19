@@ -29,8 +29,9 @@ export HATCH_DB_NAME=hatchling_db
 
 1. Follow the directions to setup the dependencies for these [`demos`](https://github.com/Cornell-PoBE/demos#setup)
 2. Install `MySQL`
-3. `cd` into the root of the app (`./hatchling`)
-4. Run `./setup`
+3. Create a database in `MySQL`: `mysql> CREATE DATABASE hatchling_db;`
+4. `cd` into the root of the app (`./hatchling`)
+5. Run `./setup`
 
 ## Running
 In the root (`./hatchling`):

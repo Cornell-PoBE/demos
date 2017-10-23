@@ -1,0 +1,44 @@
+# This is a simple example Ansible playbook
+---
+- name: Starting a Simple Flask App
+  hosts: all
+  remote_user: root
+  become: true
+  become_method: sudo
+  vars:
+      repository_path: /home/vagrant/demo
+  tasks:
+    - name: Install necessary packages
+      apt: update_cache=yes name={{ item }} state=present
+      with_items:
+        - git
+        - python-dev
+        - python-pip
+        - nginx
+    - name: Check if demo directory exists
+      stat: path='{{ repository_path }}'
+      register: demo_copied
+    - name: Make demo directory
+      command: mkdir -p '{{ repository_path }}'
+      when: demo_copied.stat.exists == false
+    - name: Copy app.py
+      template: src=app.py dest='{{ repository_path }}/app.py'
+    - name: Copy requirements.txt
+      template: src=requirements.txt dest='{{ repository_path }}/requirements.txt'
+    - name: Install pip requirements
+      pip: requirements='{{ repository_path }}/requirements.txt'
+    - name: Copy Upstart configuration
+      template: src=upstart.conf.j2 dest=/etc/init/upstart.conf
+    - name: Make sure our server is running
+      service: name=upstart state=started
+    - name: Copy Nginx site values
+      template: src=a3.nginx.j2 dest=/etc/nginx/sites-enabled/a3
+      notify:
+        - restart nginx
+    - name: Remove any default sites
+      file: path=/etc/nginx/sites-enabled/default state=absent
+      notify:
+        - restart nginx
+  handlers:
+    - name: restart nginx
+      service: name=nginx state=restarted

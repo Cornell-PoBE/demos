@@ -1,0 +1,9 @@
+server {
+    listen 80;
+
+    location / {
+        include uwsgi_params;
+        include proxy_params;
+        proxy_pass http://unix:/tmp/a3.sock;
+    }
+}

@@ -12,5 +12,5 @@ marshmallow-sqlalchemy==0.13.1
 requests==2.18.4
 SQLAlchemy==1.1.14
 termcolor==1.1.0
-urllib3==1.22
+urllib3==1.26.5
 Werkzeug==0.12.2
